@@ -1,0 +1,750 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --russian-white: #ffffff;
+    --russian-blue: #0039a6;
+    --russian-red: #d52b1e;
+    --dark-bg: #0c0c0c;
+    --neon-glow: 0 0 20px;
+}
+
+@font-face {
+    font-family: 'Exclusive';
+    src: url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Raleway:wght@400;600&display=swap');
+}
+
+body {
+    font-family: 'Raleway', sans-serif;
+    background: linear-gradient(135deg, #0a0a0a 0%, #141414 100%);
+    color: #fff;
+    overflow-x: hidden;
+    min-height: 100vh;
+    position: relative;
+    font-size: 16px;
+}
+@media (max-width: 768px) {
+    body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: 
+            radial-gradient(circle at 20% 30%, rgba(0, 57, 166, 0.05) 2px, transparent 2px),
+            radial-gradient(circle at 80% 70%, rgba(213, 43, 30, 0.05) 1px, transparent 1px);
+        background-size: 200px 200px, 150px 150px;
+        z-index: -1;
+        animation: floatParticles 30s linear infinite;
+    }
+}
+
+@keyframes floatParticles {
+    0% { transform: translateY(0) translateX(0); }
+    100% { transform: translateY(-100px) translateX(50px); }
+}
+header {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 0 5%;
+    overflow: hidden;
+}
+
+header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        45deg,
+        var(--russian-white) 0%,
+        transparent 25%,
+        var(--russian-blue) 50%,
+        transparent 75%,
+        var(--russian-red) 100%
+    );
+    background-size: 400% 400%;
+    animation: tricolorWave 15s ease-in-out infinite;
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+    z-index: -1;
+}
+
+.header-content {
+    max-width: 90%;
+    margin: 0 auto;
+    animation: slideInFromRight 1.5s ease-out;
+    text-align: center;
+}
+
+header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 8vw, 4.5rem);
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(45deg, 
+        var(--russian-white),
+        var(--russian-blue),
+        var(--russian-red)
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    animation: textShimmer 8s linear infinite;
+}
+
+header p {
+    font-size: clamp(1rem, 4vw, 1.5rem);
+    font-weight: 300;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    position: relative;
+    padding-left: 15px;
+    opacity: 0;
+    animation: fadeInUp 1s ease-out 0.5s forwards;
+    max-width: 90%;
+    margin: 0 auto;
+}
+
+header p::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 8px;
+    height: 8px;
+    background: var(--russian-red);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+.about {
+    padding: 10vh 5%;
+    position: relative;
+    min-height: auto;
+}
+
+.about-content {
+    position: relative;
+    z-index: 2;
+    max-width: 100%;
+    background: rgba(20, 20, 20, 0.9);
+    padding: 5%;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 
+        10px 10px 30px rgba(0, 0, 0, 0.5),
+        -5px -5px 15px rgba(255, 255, 255, 0.05);
+    margin-bottom: 30px;
+}
+
+.about h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 6vw, 3.5rem);
+    margin-bottom: 5%;
+    text-align: center;
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.about h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 3px;
+    background: linear-gradient(90deg, 
+        var(--russian-white),
+        var(--russian-blue),
+        var(--russian-red)
+    );
+    background-size: 300% 100%;
+    animation: gradientShift 3s linear infinite;
+}
+
+.about-img-container {
+    width: 80%;
+    max-width: 300px;
+    height: auto;
+    aspect-ratio: 3/4;
+    margin: 5% auto;
+    overflow: hidden;
+    border-radius: 20px;
+    border: 3px solid;
+    animation: borderColors 4s infinite;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.about-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+}
+
+.about-img-container:hover img {
+    transform: scale(1.05);
+}
+
+.about-text p {
+    font-size: clamp(1rem, 3.5vw, 1.2rem);
+    line-height: 1.6;
+    margin-bottom: 5%;
+    color: #e0e0e0;
+    position: relative;
+    padding-left: 20px;
+    border-left: 2px solid var(--russian-blue);
+}
+.hobbies {
+    padding: 10vh 5%;
+    position: relative;
+    background: linear-gradient(135deg, 
+        rgba(10, 10, 10, 0.95) 0%,
+        rgba(20, 20, 30, 0.9) 100%);
+}
+
+.hobbies h2 {
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 6vw, 3.5rem);
+    margin-bottom: 8%;
+    position: relative;
+    padding-bottom: 3%;
+}
+
+.hobbies h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    max-width: 150px;
+    height: 3px;
+    background: linear-gradient(90deg, 
+        var(--russian-white),
+        var(--russian-blue),
+        var(--russian-red)
+    );
+    background-size: 300% 100%;
+    animation: gradientShift 3s linear infinite;
+}
+
+.hobbies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(300px, 90vw), 1fr));
+    gap: 4%;
+    max-width: 100%;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+.hobby-card {
+    background: rgba(25, 25, 35, 0.9);
+    border-radius: 15px;
+    padding: 8% 6%;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    margin-bottom: 5%;
+}
+
+.hobby-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, 
+        var(--russian-white),
+        var(--russian-blue),
+        var(--russian-red)
+    );
+    background-size: 300% 100%;
+    animation: gradientShift 3s linear infinite;
+}
+
+.hobby-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    border-color: rgba(77, 171, 247, 0.3);
+}
+
+.hobby-icon {
+    font-size: clamp(1.8rem, 6vw, 2.5rem);
+    margin-bottom: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, 
+        rgba(0, 57, 166, 0.2) 0%, 
+        rgba(213, 43, 30, 0.2) 100%);
+    color: #4dabf7;
+}
+
+.hobby-card h3 {
+    font-family: 'Raleway', sans-serif;
+    font-size: clamp(1.2rem, 4vw, 1.5rem);
+    font-weight: 600;
+    margin-bottom: 4%;
+    color: var(--russian-white);
+    position: relative;
+    padding-bottom: 3%;
+}
+
+.hobby-card h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 30px;
+    height: 2px;
+    background: var(--russian-red);
+}
+
+.hobby-card p {
+    color: #b0b0b0;
+    line-height: 1.6;
+    margin-bottom: 6%;
+    flex-grow: 1;
+    font-size: clamp(0.9rem, 3vw, 1rem);
+}
+
+.hobby-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3%;
+    margin-top: 5%;
+}
+
+.tag {
+    background: rgba(77, 171, 247, 0.15);
+    color: #a0d2ff;
+    padding: 2% 4%;
+    border-radius: 15px;
+    font-size: clamp(0.7rem, 2.5vw, 0.8rem);
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(77, 171, 247, 0.3);
+    margin-bottom: 2%;
+}
+
+.tag:hover {
+    background: rgba(77, 171, 247, 0.25);
+    transform: translateY(-2px);
+}
+.hobby-card:nth-child(1) .hobby-icon { color: #4dabf7; } 
+.hobby-card:nth-child(2) .hobby-icon { color: #51cf66; } 
+.hobby-card:nth-child(3) .hobby-icon { color: #ff6b6b; } 
+.hobby-card:nth-child(4) .hobby-icon { color: #ffd43b; } 
+footer {
+    padding: 8vh 5% 5vh;
+    background: linear-gradient(to bottom, 
+        transparent,
+        rgba(0, 57, 166, 0.1) 30%,
+        rgba(213, 43, 30, 0.1) 70%,
+        rgba(20, 20, 20, 0.9)
+    );
+    position: relative;
+    overflow: hidden;
+}
+
+footer h2 {
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 6vw, 3rem);
+    margin-bottom: 8%;
+    position: relative;
+    z-index: 2;
+}
+
+.contacts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(250px, 90vw), 1fr));
+    gap: 4%;
+    margin-bottom: 8%;
+    position: relative;
+    z-index: 2;
+}
+
+.contact-item {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 8%;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 5%;
+}
+
+.contact-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.6s ease;
+}
+
+.contact-item:hover::before {
+    left: 100%;
+}
+
+.contact-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-5px);
+    border-color: var(--russian-blue);
+}
+
+.contact-icon {
+    font-size: clamp(1.5rem, 5vw, 2rem);
+    margin-bottom: 5%;
+    display: block;
+    background: linear-gradient(45deg, var(--russian-red), var(--russian-blue));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.contact-item p {
+    font-size: clamp(0.9rem, 3vw, 1rem);
+    margin-bottom: 3%;
+    color: #e0e0e0;
+}
+
+.contact-item a {
+    font-size: clamp(0.9rem, 3vw, 1rem);
+    color: #4dabf7;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    word-break: break-all;
+}
+
+.contact-item a:hover {
+    color: #339af0;
+    text-decoration: underline;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 4%;
+    margin-top: 8%;
+    flex-wrap: wrap;
+}
+
+.social-link {
+    width: clamp(45px, 12vw, 60px);
+    height: clamp(45px, 12vw, 60px);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+    text-decoration: none;
+    font-size: clamp(1.2rem, 4vw, 1.5rem);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 3%;
+}
+
+.social-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, var(--russian-white), var(--russian-blue), var(--russian-red));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.social-link:hover::before {
+    opacity: 1;
+}
+
+.social-link i {
+    position: relative;
+    z-index: 1;
+}
+
+.social-link:hover {
+    transform: scale(1.1) rotate(10deg);
+    box-shadow: 0 5px 15px rgba(0, 57, 166, 0.3);
+}
+
+.copyright {
+    text-align: center;
+    margin-top: 8%;
+    padding-top: 5%;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.copyright p {
+    font-size: clamp(0.8rem, 2.5vw, 0.9rem);
+    color: #b0b0b0;
+}
+@keyframes slideInFromRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes textShimmer {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes pulse {
+    0%, 100% { transform: translateY(-50%) scale(1); }
+    50% { transform: translateY(-50%) scale(1.1); }
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes borderColors {
+    0% { border-color: var(--russian-white); }
+    33% { border-color: var(--russian-blue); }
+    66% { border-color: var(--russian-red); }
+    100% { border-color: var(--russian-white); }
+}
+
+@keyframes tricolorWave {
+    0% {
+        background-position: 0% 0%;
+    }
+    33% {
+        background-position: 100% 50%;
+    }
+    66% {
+        background-position: 50% 100%;
+    }
+    100% {
+        background-position: 0% 0%;
+    }
+}
+.corner-decoration {
+    display: none;
+}
+
+/* Полосы прокрутки */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(20, 20, 20, 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(45deg, 
+        var(--russian-white),
+        var(--russian-blue),
+        var(--russian-red)
+    );
+    border-radius: 4px;
+}
+@keyframes cardAppear {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hobby-card {
+    animation: cardAppear 0.6s ease-out;
+    animation-fill-mode: both;
+}
+
+.hobby-card:nth-child(1) { animation-delay: 0.1s; }
+.hobby-card:nth-child(2) { animation-delay: 0.2s; }
+.hobby-card:nth-child(3) { animation-delay: 0.3s; }
+.hobby-card:nth-child(4) { animation-delay: 0.4s; }
+@media (min-width: 769px) {
+    .header-content {
+        max-width: 50%;
+        margin-left: auto;
+        text-align: left;
+    }
+    
+    header p {
+        max-width: 100%;
+        margin: 0;
+    }
+    
+    .about-content {
+        max-width: 60%;
+        padding: 40px;
+    }
+    
+    .about-img-container {
+        position: absolute;
+        right: 10%;
+        top: 50%;
+        transform: translateY(-50%) rotate(5deg);
+        width: 350px;
+        height: 450px;
+        margin: 0;
+    }
+    
+    .hobbies-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
+    
+    .contacts {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .hobbies-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .contacts {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .corner-decoration {
+        display: block;
+        position: fixed;
+        width: 100px;
+        height: 100px;
+        z-index: -1;
+        opacity: 0.05;
+    }
+    
+    .corner-decoration:nth-child(1) {
+        top: 0;
+        left: 0;
+        border-top: 2px solid var(--russian-white);
+        border-left: 2px solid var(--russian-white);
+    }
+    
+    .corner-decoration:nth-child(2) {
+        top: 0;
+        right: 0;
+        border-top: 2px solid var(--russian-blue);
+        border-right: 2px solid var(--russian-blue);
+    }
+    
+    .corner-decoration:nth-child(3) {
+        bottom: 0;
+        left: 0;
+        border-bottom: 2px solid var(--russian-red);
+        border-left: 2px solid var(--russian-red);
+    }
+    
+    .corner-decoration:nth-child(4) {
+        bottom: 0;
+        right: 0;
+        border-bottom: 2px solid var(--russian-white);
+        border-right: 2px solid var(--russian-white);
+    }
+}
+@media (max-width: 480px) {
+    header {
+        min-height: 90vh;
+    }
+    
+    header p {
+        letter-spacing: 1px;
+        padding-left: 10px;
+    }
+    
+    header p::before {
+        width: 6px;
+        height: 6px;
+    }
+    
+    .about {
+        padding: 8vh 3%;
+    }
+    
+    .about-content {
+        padding: 8%;
+    }
+    
+    .hobbies {
+        padding: 8vh 3%;
+    }
+    
+    .hobby-card {
+        padding: 10% 6%;
+    }
+    
+    footer {
+        padding: 6vh 3% 4vh;
+    }
+    
+    .social-links {
+        gap: 3%;
+    }
+}
+@media (max-height: 600px) and (orientation: landscape) {
+    header {
+        min-height: 120vh;
+    }
+    
+    .about, .hobbies {
+        padding: 5vh 5%;
+    }
+}
